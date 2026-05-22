@@ -1,4 +1,5 @@
 "use client";
+import { logout } from "@/lib/auth";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -41,6 +42,12 @@ export default function Navbar() {
                 >
                   Dashboard
                 </Link>
+                <button
+                  onClick={() => logout()}
+                  className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Sign Out
+                </button>
               </>
             ) : (
               <Link
