@@ -1,24 +1,27 @@
 "use client";
 
 import { signIn } from "next-auth/react";
+import Link from "next/link";
 
 export default function SignInPage() {
   return (
-    <div className="min-h-[calc(100vh-10rem)] flex items-center justify-center ">
-      <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-lg mx-4">
+    <div className="flex min-h-[calc(100vh-10rem)] items-center justify-center">
+      <div className="glass-panel mx-4 w-full max-w-md rounded-[2rem] p-8 sm:p-10">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">
-            Welcome to Staffio
+          <p className="eyebrow mb-3">Access</p>
+          <h2 className="text-4xl text-[color:var(--foreground)]">
+            Welcome back to Staffio
           </h2>
-          <p className="text-gray-600">
-            Sign in to post jobs or apply for opportunities
+          <p className="mt-3 text-[color:var(--muted)]">
+            Sign in to post jobs, apply for roles, and keep everything in one
+            place.
           </p>
         </div>
 
         <div className="mt-8">
           <button
             onClick={() => signIn("github", { callbackUrl: "/" })}
-            className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-200"
+            className="flex w-full items-center justify-center gap-3 rounded-full border border-[color:var(--accent-strong)] bg-[color:var(--accent-strong)] px-4 py-3 text-white transition hover:bg-[color:var(--accent)]"
           >
             <svg
               className="w-6 h-6"
@@ -32,19 +35,25 @@ export default function SignInPage() {
                 clipRule="evenodd"
               />
             </svg>
-            <span className="text-base font-medium">Continue with GitHub</span>
+            <span className="text-base font-semibold">
+              Continue with GitHub
+            </span>
           </button>
         </div>
 
-        <div className="mt-6 text-center text-sm text-gray-500">
-          By signing in, you agree to our{" "}
-          <a href="#" className="text-indigo-600 hover:text-indigo-500">
-            Terms of Service
-          </a>{" "}
-          and{" "}
-          <a href="#" className="text-indigo-600 hover:text-indigo-500">
-            Privacy Policy
-          </a>
+        <div className="mt-6 text-center text-sm text-[color:var(--muted)]">
+          By signing in, you can manage roles, applications, and posted jobs
+          from a single dashboard.
+        </div>
+
+        <div className="mt-4 text-center text-sm text-[color:var(--muted)]">
+          Need a role first?{" "}
+          <Link
+            href="/jobs"
+            className="font-semibold text-[color:var(--accent-strong)]"
+          >
+            Browse jobs
+          </Link>
         </div>
       </div>
     </div>

@@ -25,6 +25,11 @@ export default function ApplyButton({ jobId }: { jobId: string }) {
       const response = await fetch(`/api/jobs/${jobId}/apply`, {
         method: "POST",
       });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit the application.");
+      }
+
       setApplicationStatus("success");
     } catch (error) {
       if (error instanceof Error) {
@@ -40,7 +45,7 @@ export default function ApplyButton({ jobId }: { jobId: string }) {
     return (
       <button
         disabled
-        className="w-full bg-indigo-600 text-white px-6 py-3 rounded-md opacity-50 cursor-not-allowed"
+        className="w-full rounded-full bg-[color:var(--accent-strong)] px-6 py-3 text-white opacity-50 cursor-not-allowed"
       >
         Loading...
       </button>
@@ -50,12 +55,12 @@ export default function ApplyButton({ jobId }: { jobId: string }) {
   if (applicationStatus === "success") {
     return (
       <div className="text-center">
-        <p className="text-green-600 font-medium mb-4">
+        <p className="mb-4 font-medium text-green-700">
           Application submitted successfully!
         </p>
         <Link
           href="/dashboard"
-          className="text-indigo-600 hover:text-indigo-700 font-medium"
+          className="font-semibold text-[color:var(--accent-strong)]"
         >
           View your applications →
         </Link>
@@ -67,12 +72,12 @@ export default function ApplyButton({ jobId }: { jobId: string }) {
     <>
       <button
         onClick={handleApply}
-        className="w-full bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full rounded-full bg-[color:var(--accent-strong)] px-6 py-3 font-semibold text-white transition hover:bg-[color:var(--accent)] disabled:cursor-not-allowed disabled:opacity-50"
       >
         Apply for this position
       </button>
       {applicationStatus === "error" && (
-        <p className="mt-2 text-red-600 text-center">{errorMessage}</p>
+        <p className="mt-3 text-center text-sm text-red-700">{errorMessage}</p>
       )}
     </>
   );

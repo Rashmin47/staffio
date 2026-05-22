@@ -5,6 +5,7 @@ import { PrismaClient } from "./app/generated/prisma";
 
 const prisma = new PrismaClient();
 export const { auth, handlers, signIn, signOut } = NextAuth({
+  secret: process.env.AUTH_SECRET ?? process.env.BETTER_AUTH_SECRET,
   session: {
     strategy: "jwt",
   },
